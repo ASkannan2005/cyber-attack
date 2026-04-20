@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield AI | Advanced Attack Detection</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="https://img.icons8.com/isometric/512/shield.png" alt="Shield" class="sidebar-logo">
+            <h2>CyberShield</h2>
+        </div>
+        <hr class="divider">
+        <div class="sidebar-info info-box">
+            <span>💡</span>
+            <div><strong>Project Info</strong><br>This system uses Stacking Ensemble Learning (RF, GB, SVM, MLP) to detect malicious network traffic.</div>
+        </div>
+        <div class="sidebar-info success-box">
+            <span>✅</span>
+            <div><strong>System Status</strong><br>Model Loaded<br>Protected V1.0</div>
+        </div>
+        <hr class="divider">
+        <div class="sidebar-info" id="dbStatus">
+            <span>🗄️</span>
+            <div><strong>Database</strong><br><span id="dbStatusText">Connecting...</span></div>
+        </div>
+        <hr class="divider">
+        <h4 class="sidebar-section-title">Threat Levels</h4>
+        <div class="sidebar-info warning-box"><span>⚠️</span><div>Low Risk: &lt; 30%</div></div>
+        <div class="sidebar-info danger-box"><span>🔴</span><div>High Risk: &gt; 70%</div></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="header">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <div>
+                <h1 class="glow-text">🛡️ CyberShield AI</h1>
+                <p class="subtitle">Next-Gen Threat Intelligence Powered by Ensemble Learning</p>
+            </div>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" data-tab="livescan">🔍 Live Scan</button>
+            <button class="tab" data-tab="analytics">📊 Security Analytics</button>
+            <button class="tab" data-tab="history">📜 Threat History</button>
+        </div>
+
+        <!-- Tab 1: Live Scan -->
+        <section class="tab-content active" id="tab-livescan">
+            <h3 class="section-title glow-text" style="color:#60a5fa;">🔍 Network Vector Analysis</h3>
+            <form id="predictForm" class="feature-grid">
+                <div class="input-group">
+                    <label>Duration</label>
+                    <input type="number" name="duration" value="5" step="1" min="0" max="1000">
+                    <span class="help-text">Time elapsed (ms)</span>
+                </div>
+                <div class="input-group">
+                    <label>Src Bytes</label>
+                    <input type="number" name="src_bytes" value="1200" step="1" min="0" max="50000">
+                    <span class="help-text">Bytes from source</span>
+                </div>
+                <div class="input-group">
+                    <label>Dst Bytes</label>
+                    <input type="number" name="dst_bytes" value="800" step="1" min="0" max="50000">
+                    <span class="help-text">Bytes to destination</span>
+                </div>
+                <div class="input-group">
+                    <label>Hot</label>
+                    <input type="number" name="hot" value="2" step="0.1" min="0" max="100">
+                    <span class="help-text">Hot indicators</span>
+                </div>
+                <div class="input-group">
+                    <label>Num Failed Logins</label>
+                    <input type="number" name="num_failed_logins" value="0" step="0.1" min="0" max="10">
+                    <span class="help-text">Failed access attempts</span>
+                </div>
+                <div class="input-group">
+                    <label>Logged In</label>
+                    <input type="number" name="logged_in" value="1" step="0.1" min="0" max="1">
+                    <span class="help-text">Login success</span>
+                </div>
+                <div class="input-group">
+                    <label>Num Compromised</label>
+                    <input type="number" name="num_compromised" value="0" step="1" min="0" max="100">
+                    <span class="help-text">Compromised states</span>
+                </div>
+                <div class="input-group">
+                    <label>Num File Creations</label>
+                    <input type="number" name="num_file_creations" value="0" step="1" min="0" max="50">
+                    <span class="help-text">File ops count</span>
+                </div>
+                <div class="input-group">
+                    <label>Num Shells</label>
+                    <input type="number" name="num_shells" value="0" step="0.1" min="0" max="10">
+                    <span class="help-text">Root shell reqs</span>
+                </div>
+                <div class="input-group">
+                    <label>Num Access Files</label>
+                    <input type="number" name="num_access_files" value="0" step="0.1" min="0" max="10">
+                    <span class="help-text">Access file count</span>
+                </div>
+                <div class="input-group">
+                    <label>Is Guest Login</label>
+                    <input type="number" name="is_guest_login" value="0" step="0.1" min="0" max="1">
+                    <span class="help-text">Guest session?</span>
+                </div>
+                <div class="input-group">
+                    <label>Count</label>
+                    <input type="number" name="count" value="50" step="1" min="0" max="512">
+                    <span class="help-text">Connections count</span>
+                </div>
+            </form>
+            <div class="button-row">
+                <button class="btn btn-primary" id="analyzeBtn">🚀 ANALYZE TRAFFIC</button>
+                <button class="btn btn-secondary" id="resetBtn">🔄 RESET PARAMETERS</button>
+            </div>
+            <div id="resultArea" class="result-area hidden"></div>
+        </section>
+
+        <!-- Tab 2: Security Analytics -->
+        <section class="tab-content" id="tab-analytics">
+            <h3 class="section-title glow-text" style="color:#a855f7;">📈 Stacking Ensemble Benchmarks</h3>
+            <div class="metrics-row">
+                <div class="metric-card"><div class="metric-value">97.8%</div><div class="metric-label">Accuracy</div><div class="metric-delta positive">+1.2%</div></div>
+                <div class="metric-card"><div class="metric-value">0.992</div><div class="metric-label">AUC-ROC</div><div class="metric-delta positive">+0.05</div></div>
+                <div class="metric-card"><div class="metric-value">98.1%</div><div class="metric-label">Recall</div></div>
+                <div class="metric-card"><div class="metric-value">97.9%</div><div class="metric-label">F1-Score</div></div>
+            </div>
+            <hr class="divider" style="margin:2rem 0;">
+            <h3 class="section-title glow-text" style="color:#34d399;">🛡️ Real-time Threat Insights</h3>
+            <div id="analyticsCharts" class="analytics-charts">
+                <p style="color:#94a3b8;text-align:center;">Loading threat data...</p>
+            </div>
+        </section>
+
+        <!-- Tab 3: Threat History -->
+        <section class="tab-content" id="tab-history">
+            <div class="glass-card">
+                <h3 style="color:#60a5fa;margin-top:0;">📋 Recent Security Logs</h3>
+                <div id="historyTable"><p style="color:#94a3b8;">Loading history...</p></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
