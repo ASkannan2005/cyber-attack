@@ -50,6 +50,7 @@
             <button class="tab active" data-tab="livescan">🔍 Live Scan</button>
             <button class="tab" data-tab="analytics">📊 Security Analytics</button>
             <button class="tab" data-tab="history">📜 Threat History</button>
+            <button class="tab" data-tab="models">🧠 Model Analysis</button>
         </div>
 
         <!-- Tab 1: Live Scan -->
@@ -145,6 +146,14 @@
             <div class="glass-card">
                 <h3 style="color:#60a5fa;margin-top:0;">📋 Recent Security Logs</h3>
                 <div id="historyTable"><p style="color:#94a3b8;">Loading history...</p></div>
+            </div>
+        </section>
+
+        <!-- Tab 4: Model Analysis -->
+        <section class="tab-content" id="tab-models">
+            <h3 class="section-title glow-text" style="color:#facc15;">🧠 Ensemble Model Analysis</h3>
+            <div id="modelCards" class="model-cards-grid">
+                <p style="color:#94a3b8;text-align:center;">Loading model metrics...</p>
             </div>
         </section>
     </main>

@@ -211,6 +211,44 @@ html, body {
 .status-attack { color: #fca5a5; font-weight: 600; }
 .status-normal { color: #86efac; font-weight: 600; }
 
+/* ─── Model Cards ─── */
+.model-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+.model-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.model-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(250, 204, 21, 0.4);
+    box-shadow: 0 8px 25px rgba(250, 204, 21, 0.15);
+}
+.model-card h4 {
+    color: #facc15;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.model-card .metric-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+}
+.model-card .metric-label { color: #94a3b8; }
+.model-card .metric-value { color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
 /* ─── Toast ─── */
 .toast {
     position: fixed; bottom: 2rem; right: 2rem;

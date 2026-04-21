@@ -124,8 +124,18 @@ def history():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/models/metrics')
+def model_metrics():
+    try:
+        import json
+        with open('models/metrics.json', 'r') as f:
+            data = json.load(f)
+        return jsonify(data)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     print("=" * 50)
     print("  CyberShield AI — Flask Server")
     print("=" * 50)
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

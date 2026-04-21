@@ -22,6 +22,7 @@ function initTabs() {
             if (target) target.classList.add('active');
             if (tab.dataset.tab === 'analytics') loadAnalytics();
             if (tab.dataset.tab === 'history') loadHistory();
+            if (tab.dataset.tab === 'models') loadModels();
         });
     });
 }
@@ -193,6 +194,33 @@ async function loadHistory() {
         `;
     } catch (e) {
         container.innerHTML = '<p class="no-data-msg">Failed to load history.</p>';
+    }
+}
+
+// ─── Load Models ───
+async function loadModels() {
+    const container = document.getElementById('modelCards');
+    try {
+        const res = await fetch('/api/models/metrics');
+        const data = await res.json();
+        if (data.error || data.length === 0) {
+            container.innerHTML = '<p class="no-data-msg">Failed to load model metrics.</p>';
+            return;
+        }
+
+        const cards = data.map(m => `
+            <div class="model-card">
+                <h4>${m.name}</h4>
+                <div class="metric-row"><span class="metric-label">Accuracy:</span> <span class="metric-value">${(m.accuracy * 100).toFixed(2)}%</span></div>
+                <div class="metric-row"><span class="metric-label">Precision:</span> <span class="metric-value">${(m.precision * 100).toFixed(2)}%</span></div>
+                <div class="metric-row"><span class="metric-label">Recall:</span> <span class="metric-value">${(m.recall * 100).toFixed(2)}%</span></div>
+                <div class="metric-row"><span class="metric-label">F1-Score:</span> <span class="metric-value">${(m.f1 * 100).toFixed(2)}%</span></div>
+            </div>
+        `).join('');
+
+        container.innerHTML = cards;
+    } catch (e) {
+        container.innerHTML = '<p class="no-data-msg">Error loading model metrics.</p>';
     }
 }
 
